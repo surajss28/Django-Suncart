@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- ========================= SECTION PAGETOP ========================= -->
+<section class="section-pagetop bg">
+<div class="container">
+	{% if 'search' in request.path %}
+		<h2 class="title-page">Search Results :</h2>
+	{% else %}
+		<h2 class="title-page">Our Store</h2>
+	{% endif %}
+</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION INTRO END// ========================= -->
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+<div class="container">
+
+<div class="row">
+	<aside class="col-md-3">
+		
+<div class="card">
+	<article class="filter-group">
+		<header class="card-header">
+			<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+				<i class="icon-control fa fa-chevron-down"></i>
+				<h6 class="title">Categories</h6>
+			</a>
+		</header>
+		<div class="filter-content collapse show" id="collapse_1" style="">
+			<div class="card-body">
+				
+				<ul class="list-menu">
+					<li><a href="{% url 'store' %}">All Products </a></li>
+					{% for category in links %}
+						<li><a href="{{ category.get_url }}">{{ category.category_name}}  </a></li>
+					{% endfor %}
+				</ul>
+
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- filter-group  .// -->
+	
+	
+	<article class="filter-group">
+		<header class="card-header">
+			<a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+				<i class="icon-control fa fa-chevron-down"></i>
+				<h6 class="title">Price range </h6>
+			</a>
+		</header>
+		<div class="filter-content collapse show" id="collapse_3" style="">
+			<div class="card-body price-range-group">
+				<form action="{% url 'price_range' %}" method='GET'>
+                    {% csrf_token %}
+					<input type="checkbox" id="prange1" name="range_price" value="0-10">
+					<label for="vehicle1">0 - 10</label><br>
+					<input type="checkbox" id="prange2" name="range_price" value="10-20">
+					<label for="vehicle2">10 - 20</label><br>
+					<input type="checkbox" id="prange3" name="range_price" value="20-30">
+					<label for="vehicle3">20 - 30</label><br>
+					<input type="checkbox" id="prange4" name="range_price" value="30-40">
+					<label for="vehicle3">30 - 40</label><br>
+					<input type="checkbox" id="prange5" name="range_price" value="50-100">
+					<label for="vehicle3">50 - 100</label><br>
+					<input type="checkbox" id="prange6" name="range_price" value="100-200">
+					<label for="vehicle3">100 - 2000</label><br>
+					<input type="submit" value="Submit" class='btn btn-info mt-2'>
+				</form>
+			</div><!-- card-body.// -->
+		</div>
+	</article> <!-- filter-group .// -->
+	
+</div> <!-- card.// -->
+
+	</aside> <!-- col.// -->
+	<main class="col-md-9">
+
+<header class="border-bottom mb-4 pb-3">
+		<div class="form-inline">
+			<span class="mr-md-auto">{{ product_count }} Items found </span>
+			
+		</div>
+</header><!-- sect-heading -->
+
+<div class="row">
+	{% if products %}
+    {% for product in products %}
+	<div class="col-md-4">
+		<figure class="card card-product-grid">
+			<div class="img-wrap"> 
+				
+				<a href="{{ product.get_url }}"><img src={{  product.images.url }}></a>
+				
+			</div> <!-- img-wrap.// -->
+			<figcaption class="info-wrap">
+				<div class="fix-height">
+					<a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
+					<div class="price-wrap mt-2">
+						<span class="price">${{ product.price }}</span>
+					</div> <!-- price-wrap.// -->
+				</div>
+				<a href="{{ product.get_url }}" class="btn btn-block btn-info">View Details </a>
+			</figcaption>
+		</figure>
+	</div> <!-- col.// -->
+    {% endfor %}
+
+	{% else %}
+		<div>
+			<h2> No Result found </h2>
+		</div>
+	{% endif %}
+</div> <!-- row end.// -->
+
+
+<nav class="mt-4" aria-label="Page navigation sample">
+{% if products.has_other_pages %}
+  <ul class="pagination">
+	{% if products.has_previous %}
+    	<li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">&laquo;</a></li>   	
+	{% else %}
+		<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+	{% endif %}
+
+	{% for i in products.paginator.page_range %}
+		{% if products.number == i %}
+    		<li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+		{% else %}
+			<li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+		{% endif %}
+    {% endfor %}
+    
+	{% if products.has_next %}
+    	<li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">&raquo;</a></li>   	
+	{% else %}
+		<li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+	{% endif %}
+  </ul>
+{% endif %}
+</nav>
+
+
+	</main> <!-- col.// -->
+
+</div>
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+{% endblock content %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+    <div class="container">
+        <div class="row">
+        <main class="col-md-12">
+            <article class="card">
+            <header class="card-header edit-profile-header">
+                <h4 class="d-inline-block text-center">Edit Your Profile</h4>
+            </header>
+            <div class="card-body">
+                <div class="text-center my-4">
+                    <img src="{{userprofile.profile_picture.url}}" alt="profile_picture" class='user-profile'>                   
+                </div>
+                <div class="row"> 
+                   <div class="col-md-12">
+                        <form action="{% url 'edit_profile' %}" method='POST' enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <label for="">Profile Picture</label>
+                                {{profile_form.profile_picture}}
+                            </div>
+                            <div class="form-row edit-profile py-3">
+                                <div class="col form-group">
+                                    <label for="">First Name</label>
+                                    {{user_form.first_name}}
+                                </div>
+                                <div class="col form-group pad-top">
+                                    <label for="">Last Name</label>
+                                    {{user_form.last_name}}
+                                </div>
+                            </div>
+                            <div class="form-row edit-profile pb-3">
+                                <div class="col form-group">
+                                    <label for="">Email </label>
+                                    {{user_form.email}}
+                                </div>
+                                <div class="col form-group pad-top">
+                                    <label for="">Phone Number</label>
+                                    {{user_form.phone_number}}
+                                </div>
+                            </div>
+                            <div class="form-row edit-profile pb-3">
+                                <div class="col form-group">
+                                    <label for="">Address Line 1</label>
+                                    {{profile_form.address_line_1}}
+                                </div>
+                                <div class="col form-group pad-top">
+                                    <label for="">Address Line 2</label>
+                                    {{profile_form.address_line_2}}
+                                </div>
+                            </div>
+                            <div class="form-row edit-profile pb-3">
+                                <div class="col form-group">
+                                    <label for="">City</label>
+                                    {{profile_form.city}}
+                                </div>
+                                <div class="col form-group pad-top">
+                                    <label for="">State</label>
+                                    {{profile_form.state}}
+                                </div>
+                                <div class="col form-group pad-country">
+                                    <label for="">Country</label>
+                                    {{profile_form.country}}
+                                </div>
+                            </div>
+                            <div class="text-center my-4">
+                                <input type="submit" value="save" class="btn btn-primary btn-update-profile">
+                            </div>
+                        </form>
+                    </div>
+            
+                       
+                   </div>
+                </div> <!-- row.// -->
+            </div> <!-- card-body .// -->
+            </article> <!-- order-group.// --> 
+        </main>
+    </div> <!-- row.// -->
+    </div>
+    
+    
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+    
+
+
+
+
+
+
+{% endblock content %}
+

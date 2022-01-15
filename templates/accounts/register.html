@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+        <div class="card mx-auto login-wrap-register">
+          <article class="card-body">
+            <h3 class=" card-title text-center mb-1">WELCOME TO SUNKART</h3>
+            <p class="text-center">Create a new account </p>
+            <form action='{% url 'register' %}' method='POST'>
+                {% csrf_token %}
+                {{ form.non_field_errors}}
+                    <div class="form-group">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="form-group">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="form-group">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
+                        {{ form.phone_number }}
+                    </div>
+                    <div class="form-group">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+                        {{ form.password }}
+                    </div>
+                    <div class="form-group">
+                        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+                        {{ form.confirm_password }}
+                    </div>                   
+                    <div class="form-group">
+                        <button type="submit" class="btn form-control btn-secondary rounded submit px-3">Register</button>
+                    </div>    
+                        
+                </form>
+                <div class="w-100 text-center mt-4 text">
+                    <p class="mb-0">Already have an account?</p>
+                    <a href="{% url 'login' %}">LOGIN</a>
+                </div>
+            </article><!-- card-body.// -->
+        </div> <!-- card .// -->
+    <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+    
+    
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+    
+    
+
+
+{% endblock content %}

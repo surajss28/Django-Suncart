@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y" style="min-height:84vh">
+
+    <!-- ============================ COMPONENT LOGIN   ================================= -->
+        <div class="card mx-auto login-wrap">
+          <div class="card-body">
+          <h3 class="card-title text-center mb-1">WELCOME</h3>
+          <p class="text-center">Sign in by entering the information below</p>
+          <form action='{% url 'login' %}' method='POST'>
+              {% csrf_token %}
+              <div class="form-group">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
+                 <input type="email" class="form-control custome-form-control" placeholder="Email Address" name='email'>
+              </div> <!-- form-group// -->
+              <div class="form-group">
+                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+                <input type="password" class="form-control custome-form-control" placeholder="Password" name='password'>
+              </div> <!-- form-group// -->
+              
+              <div class="form-group">
+                  <a href="{% url 'forgotPassword' %}" class="float-right forgot-pass">Forgot password?</a> 
+               
+              </div> <!-- form-group form-check .// -->
+              <div class="form-group">
+                  <button type="submit" class="btn btn-secondary btn-block"> Login  </button>
+              </div> <!-- form-group// -->    
+          </form>
+          <div class="w-100 text-center mb-4 text">
+             <p class="mb-0">Don't have an account?</p>
+             <a href="{% url 'register' %}">SIGN UP</a>
+         </div>
+          </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+    
+
+    <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+    
+    
+    </section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+    
+
+
+{% endblock content %}

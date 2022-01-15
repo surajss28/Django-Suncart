@@ -1,0 +1,153 @@
+{% load static %}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark laptop-scope">
+    <div class="container-fluid">
+        
+      <a class="navbar-brand" href="{% url 'home' %}"><img class="logo" src={% static './images/logo.png' %}></a>
+
+        
+            <div class="col-lg col-sm col-md col-6 flex-grow-0">
+                <div class="category-wrap dropdown d-inline-block">
+                    <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown"> 
+                        <i class="fa fa-bars"></i> All category 
+                    </button>
+                    <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'store' %}">All Products </a>
+                    {% for category in links %}
+                        <a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }} </a>
+                    {% endfor %}
+                    </div>
+                </div>  <!-- category-wrap.// -->
+            </div> <!-- col.// -->
+        
+        
+        <div class="col-lg col-sm col-md col-6 phone-search">
+            <form action="{% url 'search' %}" class="search" method='GET'>
+                <div class="input-group w-100">
+                    <input type="text" class="form-control" style="width:60%;" placeholder="Search" name='keyword'>
+                    
+                    <div class="input-group-append">
+                      <button class="btn btn-danger" type="submit">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                </div>
+            </form> <!-- search-wrap .end// -->
+        </div> <!-- col.// -->
+
+        <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
+            <div class="d-flex ml-4 mb-3 mb-lg-0">
+                {% if user.id is None %}
+                <div class="widget-header">
+                    <small class="title text-muted">Welcome guest!</small>
+                    <div> 
+                        <a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
+                        <a href="{% url 'register' %}"> Register</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="widget-header mt-1">
+                    <small class="title text-muted">Welcome {{ user.first_name }}!</small>
+                            <div class="nav-item dropdown">
+                                <a href='#' role='button' class="dropbtn dropdown-toggle">Dashboard</a>
+                                <div class="dropdown-content">
+                                    <a class="dropdown-item" href="{% url 'my_orders' %}">My Orders</a>
+                                    <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>
+                                    <a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                </div>
+                            </div>
+                </div>
+                {% endif %}
+                <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
+                    <div class="icon icon-sm rounded-circle border-cart"><i class="fa fa-shopping-cart"></i></div>
+                    <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
+                </a>
+            </div> <!-- widgets-wrap.// -->
+        </div> <!-- col.// -->
+    </div>
+</nav>
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mobile-scope">
+    <div class="container-fluid">
+        
+      <a class="navbar-brand" href="{% url 'home' %}"><img class="logo" src={% static './images/logo.png' %}></a>
+
+     
+      <div class="new">
+        
+              {% if user.id is None %}
+              <div class="widget-header login-section">
+                  <p><a class='dropdown-toggle' href="{% url 'login' %}">Hello, Sign in</a> </p>
+              </div>
+              {% else %}
+              <div class="widget-header mt-1">
+                  <small class="title text-muted dropdown-toggle" style="cursor:pointer" onclick="openNav()">Hello {{ user.first_name }}</small>
+                  <div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a class="dropdown-item" href="{% url 'my_orders' %}">My Orders</a>
+                    <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>
+                    <a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                           
+                    </div>
+                 
+              </div>
+              {% endif %}
+              <!-- widgets-wrap.// -->
+            </div> <!-- col.// -->
+
+
+            <a href="{% url 'cart' %}" class="widget-header">
+                <div class="icon icon-sm rounded-circle border-cart"><i class="fa fa-shopping-cart"></i></div>
+                <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
+            </a>
+            
+      <div class="phone-search">
+          <form action="{% url 'search' %}" class="search" method='GET'>
+              <div class="input-group w-100">
+                  <input type="text" class="form-control" style="width:60%;" placeholder="Search" name='keyword'>
+                  
+                  <div class="input-group-append">
+                      <button class="btn btn-danger" type="submit">
+                          <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form> <!-- search-wrap .end// -->
+        </div> <!-- col.// -->
+        
+        
+        
+        <div class="col-lg col-sm col-md col-6 flex-grow-0 mt-2 all-category">
+            <div class="category-wrap dropdown d-inline-block">
+                <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown"> 
+                    <i class="fa fa-bars"></i> All category 
+                </button>
+                <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'store' %}">All Products </a>
+                {% for category in links %}
+                    <a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }} </a>
+                {% endfor %}
+                </div>
+            </div>  <!-- category-wrap.// -->
+        </div> <!-- col.// -->
+    </div>
+</nav>
+
+<script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "150px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+
+
+

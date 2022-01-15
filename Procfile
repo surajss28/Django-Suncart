@@ -1,0 +1,1 @@
+web: gunicorn sunkart.wsgi --log-file -
