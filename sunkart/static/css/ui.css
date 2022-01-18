@@ -318,20 +318,7 @@ article:after,
   transition: 0.5s;
 }
 
-.bg-pattern {
-  background-image: url(../images/banners/bg-pattern.svg), linear-gradient(135deg, #3167eb, #545454);
-  background-size: cover, auto;
-  background-repeat: no-repeat, repeat;
-  background-position: 0px 0px, 50% 50%;
-}
 
-.bg-img {
-  overflow: hidden;
-  background-color: #ddd;
-  background-image: linear-gradient(135deg, rgba(49, 103, 235, 0.8), rgba(84, 84, 84, 0.9)), url("../images/banners/bg-cpu.jpg");
-  background-position: 0px 0px, 50% 50%;
-  background-size: auto cover;
-}
 
 .overlay-gradient {
   position: relative;
@@ -1550,9 +1537,6 @@ a[class*=card]:hover .title {
     border: 1px solid #b689b0!important;
 }
 
-.forgot-pass{
-  color: #b689b0!important; ;
-}
 
 .form-group,.form-row {
   font-family: fangsung;
@@ -1687,7 +1671,6 @@ input[data-autocompleted] {
 
 .forgot-pass{
   max-width: 500px; 
-  margin-top:100px;
 }
 
 
@@ -1702,4 +1685,9 @@ input[data-autocompleted] {
 
 .invoice-logo-img{
   max-height: 40px;
+}
+
+.padding-y {
+  padding-top: 25px;
+  padding-bottom: 20px;
 }
