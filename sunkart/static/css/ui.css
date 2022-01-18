@@ -1691,3 +1691,13 @@ input[data-autocompleted] {
   padding-top: 25px;
   padding-bottom: 20px;
 }
+
+.btn-success {
+  color: #fff;
+  background-color: #2c7230!important;
+  border-color: #2c7230!important;
+}
+
+.border-minus{
+  border-radius: 0px!important;
+}

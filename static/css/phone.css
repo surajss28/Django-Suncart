@@ -38,7 +38,7 @@
 }
 
 .search{
-    width: 20.5rem;
+    width: 23rem;
 }
 
 .text-muted{
@@ -95,12 +95,12 @@
 }
 
 .login-wrap{
-    max-width: 305px;
+    max-width: 23rem;
     margin-top: 20px;
 }
 
 .login-wrap-register{
-    max-width: 305px;
+    max-width: 23rem;
     margin-top: 30px;
   }
 
@@ -120,7 +120,7 @@
 }
 
 .empty-cart {
-    width: 20rem;
+    width: 22.5rem;
     margin-left: 0rem;
 }
 
@@ -134,7 +134,6 @@
 
 .forgot-pass{
     max-width: 304px;
-    margin-top:90px;
   }
 
   .card-title{
@@ -162,16 +161,17 @@
 }
 
 .price-wrap{
-    margin-top: 12px;
+    margin-top: 1px;
 }
 
 .remove-cart{
-    margin-left: -126px;
+    margin-left: -90px;
     margin-top: 96px;
     position: absolute;
 }
 .itemside {
     width: 150%;
+    align-items: unset!important;
 }
 .input-spinner input.form-control {
     max-width: 35px;
@@ -227,4 +227,38 @@
   .phone-number{
       display: none!important;
   }
+
+  .border-minus{
+      border-radius: 0px!important;
+  }
+
+  .cart-aside{
+      margin-top: 2rem;
+  }
+
+  .checkout-form{
+      display: block!important;
+  }
+
+  .checkout-label{
+      margin-top: 2rem!important;
+ 
+    }
+
+    .table-shopping-cart.table td, .table-shopping-cart.table th {
+        padding-left: 0.5rem!important;
+    }
+
+    .checkout-quantity{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .table td {
+        padding: 7px!important;
+    }
+
+    h4{
+        font-size: 20px;
+    }
 }
