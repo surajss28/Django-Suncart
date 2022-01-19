@@ -1660,7 +1660,7 @@ input[data-autocompleted] {
 }
 
 .mobile-scope{
-  display: none;
+  display: none!important;
 }
 
 
